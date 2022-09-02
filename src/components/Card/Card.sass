@@ -1,19 +1,13 @@
 .mycard
-  user-select: none
-  height: 125px
+  height: 150px
   padding: 10px
-  box-sizing: border-box
-  text-align: center
-  margin-bottom: 15px
   transition: 0.6s
   transform-style: preserve-3d
-  position: relative
-  &:hover
-    cursor: pointer
-    filter: drop-shadow(6px 4px 3px #ff00ea83)
+
   div
-    backface-visibility: hidden
     position: absolute
+    backface-visibility: hidden
+    
     top: 0
     left: 0
     width: 100%
@@ -21,6 +15,8 @@
     border-radius: 10px
     transition: 0.6s
     background: #f4f5f7
+    &:hover
+        filter: drop-shadow(6px 4px 3px #ff00ea83)
   .front
     font-size: 50px
     line-height: 120px
@@ -30,29 +26,34 @@
     align-items: center
     justify-content: center
   .back
+    display: flex
+    justify-content: center
     transform: rotateY(180deg)
     line-height: 110px
     img
-        vertical-align: middle
-        width: 70%
-  &.opened
+        width: 50%
+  
+.opened
     transform: rotateY(180deg)
-  &.matched
+
+.matched
     transform: rotateY(180deg)
+    .front
+        opacity: 0
     .back
         box-shadow: 0 0 0 2px rgba(#000, 0.05) inset
         animation: selected .8s 0s ease 1
         animation-fill-mode: both
-        opacity: 0.25
+        opacity: .2
 
 @keyframes selected
   0%
-    opacity:.2
+    opacity: .2
   30%
-    opacity:.5
+    opacity: .5
   50%
-    opacity:.9
+    opacity: .9
   70%
-    opacity:.2
+    opacity: .2
   100%
-    opacity:.3
+    opacity: .4
