@@ -1,22 +1,20 @@
 import "./Modal.sass";
 
-import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { start } from "../../redux/Slice/cardSlice";
 
 function Modal() {
   const dispatch = useDispatch();
-  const [isVisible, setVisible] = useState(true);
-  const score = useSelector((state) => state.score);
-  const isOver = useSelector((state) => state.isOver);
+  const score = useSelector((state) => state.cards.score);
+  const isOver = useSelector((state) => state.cards.isOver);
+  const isHidden = useSelector((state) => state.cards.modalHidden);
 
   const handleStart = () => {
-    setVisible(false);
     dispatch(start());
   };
 
   return (
-    <div className={isVisible ? "modal d-block" : "modal fade"}>
+    <div className={isHidden ? "modal" : "modal d-block"}>
       <div className="modal-dialog modal-dialog-centered">
         {!isOver ? (
           <div className="modal-content">
@@ -45,6 +43,7 @@ function Modal() {
                 type="button"
                 className="btn btn-modal"
                 data-bs-dismiss="modal"
+                onClick={handleStart}
               >
                 Play again
               </button>
